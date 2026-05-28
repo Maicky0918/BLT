@@ -1,0 +1,420 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* FUNDO */
+body {
+  background: linear-gradient(135deg, #000000, #0a0f2c, #000814);
+  color: #ffffff;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  min-height: 100vh;
+}
+
+/* MENU BOTÃO */
+.menu-btn {
+  position: fixed;
+
+  top: 20px;
+  left: 20px;
+
+  font-size: 35px;
+
+  color: #00eaff;
+
+  cursor: pointer;
+
+  z-index: 1000;
+
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  text-shadow:
+    0 0 10px #00eaff,
+    0 0 20px #00eaff;
+}
+
+/* MENU LATERAL */
+.menu-lateral {
+  position: fixed;
+
+  top: 0;
+  left: -300px;
+
+  width: 260px;
+  height: 100vh;
+
+  background: #000814;
+
+  border-right: 2px solid #00eaff;
+
+  box-shadow: 0 0 20px #00eaff55;
+
+  padding: 20px;
+
+  transition: 0.4s;
+
+  overflow-y: auto;
+
+  text-align: left;
+
+  z-index: 999;
+}
+
+/* MENU ABERTO */
+.menu-lateral.ativo {
+  left: 0;
+}
+
+/* TITULOS MENU */
+.menu-lateral h2 {
+  color: #00c3ff;
+
+  margin-top: 20px;
+
+  border-left: 4px solid #00eaff;
+
+  padding-left: 10px;
+
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.menu-lateral h3 {
+  color: #66e0ff;
+
+  margin-top: 20px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* LINKS MENU */
+.menu-lateral a {
+  display: block;
+
+  color: #cfd8ff;
+
+  text-decoration: none;
+
+  margin: 10px 0;
+
+  transition: 0.3s;
+}
+
+.menu-lateral a:hover {
+  color: #00eaff;
+
+  text-shadow:
+    0 0 8px #00eaff,
+    0 0 15px #00eaff;
+
+  padding-left: 5px;
+}
+
+/* TITULOS */
+h1 {
+  width: 100%;
+
+  text-align: center;
+
+  font-size: 3em;
+
+  color: #00eaff;
+
+  text-shadow: 0 0 10px #00eaff;
+
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h2 {
+  text-align: center;
+
+  margin-top: 30px;
+
+  color: #00c3ff;
+
+  border-left: 4px solid #00eaff;
+
+  padding-left: 10px;
+
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h3 {
+  text-align: center;
+
+  color: #66e0ff;
+
+  margin-top: 15px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* PARÁGRAFOS */
+p {
+  text-align: center;
+
+  margin: 10px 0;
+
+  color: #cfd8ff;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* LINKS */
+a {
+  display: inline-block;
+
+  color: #00eaff;
+
+  text-decoration: none;
+
+  transition: 0.3s;
+
+  text-align: center;
+}
+
+a:hover {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 8px #00eaff,
+    0 0 15px #00eaff;
+}
+
+/* PESQUISA */
+form {
+  margin: 20px 0;
+
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+
+  width: 60%;
+
+  border: 2px solid #00eaff;
+
+  border-radius: 8px;
+
+  background-color: #000814;
+
+  color: white;
+
+  outline: none;
+
+  box-shadow: 0 0 8px #00eaff inset;
+
+  text-align: center;
+}
+
+button {
+  padding: 10px 15px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #00eaff;
+
+  color: #000;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-left: 10px;
+
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00bcd4;
+
+  box-shadow: 0 0 10px #00eaff;
+}
+
+/* LISTAS */
+ul {
+  margin: 10px 0 20px 0;
+
+  list-style-position: inside;
+
+  text-align: center;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+/* BOTÃO JOGO */
+h3 + p + a {
+  display: inline-block;
+
+  margin-top: 10px;
+
+  padding: 8px 12px;
+
+  border: 1px solid #00eaff;
+
+  border-radius: 6px;
+
+  box-shadow: 0 0 10px #00eaff;
+}
+
+/* LINHA */
+hr {
+  width: 80%;
+
+  border: none;
+
+  height: 1px;
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    #00eaff,
+    transparent
+  );
+
+  margin: 30px 0;
+}
+
+/* RODAPÉ */
+body > p:last-child {
+  text-align: center;
+
+  margin-top: 40px;
+
+  font-size: 0.9em;
+
+  color: #7aaaff;
+}
+
+/* SCROLL */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00eaff;
+  border-radius: 10px;
+}
+
+/* =========================
+   FEATURED SLIDER (JOGO EM DESTAQUE)
+   ========================= */
+
+.featured-slider {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 30px auto;
+
+  position: relative;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  border: 2px solid #00eaff;
+
+  box-shadow:
+    0 0 15px #00eaff55,
+    0 0 35px #00eaff22;
+
+  background: #000814;
+}
+
+/* container das imagens */
+.featured-slider .slides {
+  position: relative;
+  width: 100%;
+  height: 420px;
+}
+
+/* cada slide */
+.featured-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  transform: scale(1.05);
+
+  transition: opacity 0.8s ease, transform 1s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* slide ativo */
+.featured-slider .slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+/* imagens */
+.featured-slider .slide img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: brightness(0.85) contrast(1.1);
+
+  transition: 0.5s;
+}
+
+/* hover leve na imagem */
+.featured-slider:hover img {
+  filter: brightness(1) contrast(1.2);
+}
+
+/* efeito de brilho nas bordas */
+.featured-slider::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 234, 255, 0.15),
+    transparent
+  );
+
+  z-index: 3;
+
+  pointer-events: none;
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+  .featured-slider .slides {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-slider .slides {
+    height: 200px;
+  }
+}

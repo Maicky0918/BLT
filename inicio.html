@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Blue LIght Team- Início</title>
+
+  <link rel="stylesheet" href="Css/main.css">
+</head>
+
+<body>
+
+  <!-- MENU -->
+  <div class="menu-btn" onclick="abrirMenu()">
+    ☰
+  </div>
+
+  <!-- MENU LATERAL -->
+  <div class="menu-lateral" id="menu">
+
+    <h2>Categorias</h2>
+
+    <ul>
+      <li><a href="#">Ação</a></li>
+      <li><a href="#">Terror</a></li>
+      <li><a href="#">Aventura</a></li>
+      <li><a href="#">RPG</a></li>
+      <li><a href="#">Multiplayer</a></li>
+    </ul>
+
+    <hr>
+
+    <h2>Catálogo</h2>
+
+    <h3>Ação</h3>
+    <ul>
+      <li><a href="#">War Strike</a></li>
+      <li><a href="#">Speed Battle</a></li>
+    </ul>
+
+    <h3>Terror</h3>
+    <ul>
+      <li><a href="#">Night Fear</a></li>
+      <li><a href="#">Dark House</a></li>
+    </ul>
+
+    <h3>Aventura</h3>
+    <ul>
+      <li><a href="#">Lost Island</a></li>
+      <li><a href="#">Hidden Temple</a></li>
+    </ul>
+
+  </div>
+
+  <!-- Cabeçalho -->
+  <h1>Blue Light Team</h1>
+  <p>Hospedagem de jogos online</p>
+
+  <!-- Barra de pesquisa -->
+  <form>
+    <input type="text" placeholder="🔍 Pesquisar jogos..." name="pesquisa">
+    <button type="submit">Buscar</button>
+  </form>
+
+  <hr>
+
+  <!-- Jogo em destaque -->
+  <h2>Jogos em Destaque</h2>
+  <!-- SLIDER JOGO EM DESTAQUE -->
+<div class="featured-slider">
+    <div class="slides">
+
+        <div class="slide active">
+            <img src="img/darkhouse.jpg" alt="Jogo em destaque 1">
+        </div>
+
+        <div class="slide">
+            <img src="img/hidden.jpeg" alt="Jogo em destaque 2">
+        </div>
+
+        <div class="slide">
+            <img src="img/island.jpeg" alt="Jogo em destaque 3">
+        </div>
+
+        <div class="slide">
+            <img src="img/war.jpeg" alt="Jogo em destaque 4">
+        </div>
+
+    </div>
+</div>
+
+  <h3>Cronocide</h3>
+  <p>Um jogo intenso de sobrevivência onde o tempo é seu maior inimigo.</p>
+
+  <a href="cronocide.html">Ver mais</a>
+
+  <hr>
+
+  <!-- Rodapé -->
+  <p>©️ 2026 Blue Light Team - Todos os direitos reservados</p>
+
+  <!-- SCRIPT MENU -->
+  <script>
+    function abrirMenu() {
+      document.getElementById("menu").classList.toggle("ativo");
+    }
+    
+document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".featured-slider .slide");
+    let current = 0;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove("active"));
+        slides[index].classList.add("active");
+    }
+
+    function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    }
+
+    setInterval(nextSlide, 5000);
+});
+
+  </script>
+
+</body>
+</html>
