@@ -37,17 +37,14 @@ $raridadeLabel = ['comum' => 'Comum', 'raro' => 'Raro', 'epico' => 'Épico', 'le
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Conquistas | Blue Light</title>
 <link rel="stylesheet" href="../Css/design-system.css">
-<link rel="stylesheet" href="../Css/dashboard.css?v=<?= time() ?>">
+<link rel="stylesheet" href="../Css/dashboard.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
 <header class="bl-dash-header">
   <div class="container">
-    <a class="bl-logo" href="../Index.php"><img src="../img/Logo Blue Light com contorno.png" alt="Logo Blue Light">
-    <span>BLUE<b>LIGHT</b></span>
-    </a>
-
+    <a class="bl-logo" href="../Index.php"><img src="../img/Logo Blue Light com contorno.png" alt="Logo Blue Light"><span>BLUE LIGHT</span></a>
     <nav>
       <a href="../Index.php">Início</a>
       <a href="perfil.php">Perfil</a>

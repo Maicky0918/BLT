@@ -22,7 +22,7 @@ $stmt->bind_param('i', $id);
 $stmt->execute();
 $stmt->close();
 
-registrarAtividade($conn, $id, 'jogo', 'Jogou Chronocide.');
+registrarAtividade($conn, $id, 'jogo', 'Jogou ElderValley Realms.');
 desbloquearConquista($conn, $id, 'primeiro_jogo');
 adicionarXp($conn, $id, 25, 'Sessão de jogo');
 ?>
@@ -31,7 +31,7 @@ adicionarXp($conn, $id, 25, 'Sessão de jogo');
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chronocide | Blue Light</title>
+<title>ElderValley Realms | Blue Light</title>
 <link rel="stylesheet" href="Css/design-system.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -78,7 +78,7 @@ iframe{ border:0; width:100%; height:100%; display:block; background:#000; }
   </div>
 
   <div class="bl-game-frame-wrap">
-    <iframe src="ElderValley Realms/ElderValley Realms.html" title="ElderValley Realms" onload="document.getElementById('blGameLoading').classList.add('is-hidden')"></iframe>
+    <iframe src="ElderValley Realms/Novo Projeto de Jogo.html" title="ElderValley Realms" onload="document.getElementById('blGameLoading').classList.add('is-hidden')"></iframe>
   </div>
 </div>
 

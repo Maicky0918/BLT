@@ -92,15 +92,56 @@ function exigirCsrf(?string $token, string $destino): void
     }
 }
 
+
 function planoInfo(string $slug): ?array
 {
     $planos = [
-        'basico' => ['nome' => 'Básico', 'valor' => 19.90, 'dias' => 30, 'ram' => '1 GB RAM', 'ssd' => '10 GB SSD', 'suporte' => 'Suporte Básico'],
-        'premium' => ['nome' => 'Premium', 'valor' => 49.90, 'dias' => 30, 'ram' => '4 GB RAM', 'ssd' => '50 GB SSD', 'suporte' => 'Suporte Prioritário'],
-        'enterprise' => ['nome' => 'Enterprise', 'valor' => 99.90, 'dias' => 30, 'ram' => '8 GB RAM', 'ssd' => '100 GB SSD', 'suporte' => 'Suporte 24/7'],
+        'mensal' => [
+            'nome' => 'Mensal',
+            'valor' => 19.90,
+            'dias' => 30,
+            'periodo' => 'mensal',
+            'ram' => '1 GB RAM',
+            'ssd' => '10 GB SSD',
+            'suporte' => 'Suporte Básico',
+            'beneficios' => [
+                'Acesso a jogos'
+            ],
+        ],
+
+        'trimestral' => [
+            'nome' => 'Trimestral',
+            'valor' => 49.90,
+            'dias' => 90,
+            'periodo' => 'trimestral',
+            'ram' => '4 GB RAM',
+            'ssd' => '50 GB SSD',
+            'suporte' => 'Suporte Prioritário',
+            'beneficios' => [
+                'Acesso a jogos',
+                'Desconto na assinatura',
+            ],
+        ],
+
+        'anual' => [
+            'nome' => 'Anual',
+            'valor' => 99.90,
+            'dias' => 365,
+            'periodo' => 'anual',
+            'ram' => '8 GB RAM',
+            'ssd' => '100 GB SSD',
+            'suporte' => 'Suporte 24/7',
+            'beneficios' => [
+                'Acesso a jogos',
+                'Acesso a jogos com antecedência',
+                'Desconto na assinatura',
+            ],
+        ],
     ];
+
     return $planos[$slug] ?? null;
 }
+
 
 function assinaturaAtiva(?string $assinaturaAte): bool
 {

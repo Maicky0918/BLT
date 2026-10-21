@@ -63,6 +63,7 @@ CREATE TABLE assinaturas (
     id INT NOT NULL AUTO_INCREMENT,
     usuario_id INT NOT NULL,
     plano VARCHAR(30) NOT NULL,
+    periodo VARCHAR(20) NOT NULL DEFAULT 'mensal',
     valor DECIMAL(8,2) NOT NULL,
     metodo VARCHAR(20) NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'pendente',
@@ -170,10 +171,9 @@ CREATE TABLE usuario_conquistas (
 CREATE TABLE tokens_senha (
     id INT NOT NULL AUTO_INCREMENT,
     usuario_id INT NOT NULL,
-    codigo_hash VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL UNIQUE,
     expira_em DATETIME NOT NULL,
     usado TINYINT(1) NOT NULL DEFAULT 0,
-    tentativas TINYINT UNSIGNED NOT NULL DEFAULT 0,
     criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     INDEX idx_tokens_usuario (usuario_id),
@@ -184,9 +184,9 @@ CREATE TABLE tokens_senha (
 ) ENGINE=InnoDB;
 
 INSERT INTO planos (slug,nome,valor,dias,ram,ssd,suporte,descricao) VALUES
-('basico','Básico',19.90,30,'1 GB RAM','10 GB SSD','Suporte Básico','Plano básico da Blue Light.'),
-('premium','Premium',49.90,30,'4 GB RAM','50 GB SSD','Suporte Prioritário','Plano premium da Blue Light.'),
-('enterprise','Enterprise',99.90,30,'8 GB RAM','100 GB SSD','Suporte 24/7','Plano Enterprise da Blue Light.');
+('mensal','Mensal',19.90,30,'1 GB RAM','10 GB SSD','Suporte Básico','Assinatura mensal da Blue Light.'),
+('trimestral','Trimestral',49.90,90,'4 GB RAM','50 GB SSD','Suporte Prioritário','Assinatura trimestral da Blue Light.'),
+('anual','Anual',99.90,365,'8 GB RAM','100 GB SSD','Suporte 24/7','Assinatura anual da Blue Light.');
 
 INSERT INTO jogos (slug,titulo,descricao,genero,classificacao,desenvolvedora,capa) VALUES
 ('chronocide','Chronocide','Aventura e mistério em diferentes épocas.','Aventura','Livre','Blue Light Team','darkhouse.jpg');

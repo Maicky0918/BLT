@@ -38,9 +38,10 @@ try {
     $ate = date('Y-m-d H:i:s', strtotime('+' . $info['dias'] . ' days', $inicio));
     $valor = (float)$info['valor'];
 
-    $stmt = $conn->prepare('INSERT INTO assinaturas (usuario_id, plano, valor, metodo, status) VALUES (?, ?, ?, ?, ?)');
+    $stmt = $conn->prepare('INSERT INTO assinaturas (usuario_id, plano, periodo, valor, metodo, status) VALUES (?, ?, ?, ?, ?, ?)');
     $status = 'pago';
-    $stmt->bind_param('isdss', $id, $plano, $valor, $metodo, $status);
+    $periodo = (string)$info['periodo'];
+    $stmt->bind_param('issdss', $id, $plano, $periodo, $valor, $metodo, $status);
     if (!$stmt->execute()) {
         throw new RuntimeException('Falha ao registrar assinatura.');
     }
@@ -64,7 +65,7 @@ try {
 
     $conn->commit();
 
-    registrarAtividade($conn, $id, 'assinatura', 'Assinou o plano ' . $info['nome'] . '.');
+    registrarAtividade($conn, $id, 'assinatura', 'Assinou o período ' . $info['nome'] . '.');
     desbloquearConquista($conn, $id, 'primeira_assinatura');
 
     flash('sucesso', 'Pagamento simulado aprovado. Seu plano ' . $info['nome'] . ' está ativo até ' . date('d/m/Y', strtotime($ate)) . '.');

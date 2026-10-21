@@ -22,47 +22,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usuario = $stmt->get_result()->fetch_assoc();
         $stmt->close();
 
-        // Resposta genérica para não revelar quais e-mails estão cadastrados.
-        $mensagemGenerica = 'Se o e-mail estiver cadastrado, você receberá um código de verificação.';
-
         if ($usuario && (int)$usuario['ativo'] === 1) {
+            $token = bin2hex(random_bytes(32));
+            $expira = date('Y-m-d H:i:s', strtotime('+30 minutes'));
             $id = (int)$usuario['id'];
-            $codigo = (string)random_int(100000, 999999);
-            $codigoHash = password_hash($codigo, PASSWORD_DEFAULT);
-            $expira = date('Y-m-d H:i:s', strtotime('+10 minutes'));
 
-            // Invalida códigos anteriores desse usuário.
             $stmt = $conn->prepare('UPDATE tokens_senha SET usado = 1 WHERE usuario_id = ? AND usado = 0');
             $stmt->bind_param('i', $id);
             $stmt->execute();
             $stmt->close();
 
             $stmt = $conn->prepare(
-                'INSERT INTO tokens_senha (usuario_id, codigo_hash, expira_em, usado, tentativas) VALUES (?, ?, ?, 0, 0)'
+                'INSERT INTO tokens_senha (usuario_id, token, expira_em) VALUES (?, ?, ?)'
             );
-            $stmt->bind_param('iss', $id, $codigoHash, $expira);
+            $stmt->bind_param('iss', $id, $token, $expira);
 
             if ($stmt->execute()) {
-                $recuperacaoId = (int)$stmt->insert_id;
                 $stmt->close();
 
-                if (!enviarEmailRecuperacao($email, (string)$usuario['nome'], $codigo)) {
-                    $stmt = $conn->prepare('UPDATE tokens_senha SET usado = 1 WHERE id = ?');
-                    $stmt->bind_param('i', $recuperacaoId);
+                $cfg = bltMailConfig();
+                $link = rtrim($cfg['url_base'], '/') . '/php/redefinirSenha.php?token=' . urlencode($token);
+
+                if (!enviarEmailRecuperacao($email, (string)$usuario['nome'], $link)) {
+                    $stmt = $conn->prepare('UPDATE tokens_senha SET usado = 1 WHERE token = ?');
+                    $stmt->bind_param('s', $token);
                     $stmt->execute();
                     $stmt->close();
-                    $erro = 'Não foi possível enviar o código. Verifique a configuração de e-mail do servidor.';
+
+                    $erro = 'Não foi possível enviar o e-mail. Verifique a configuração de e-mail do servidor.';
                 } else {
-                    $_SESSION['recuperacao_id'] = $recuperacaoId;
-                    $_SESSION['recuperacao_email'] = $email;
-                    redirecionar('verificarCodigo.php');
+                    $mensagem = 'Se o e-mail estiver cadastrado, você receberá as instruções para redefinir sua senha.';
                 }
             } else {
                 $stmt->close();
-                $erro = 'Não foi possível gerar o código de recuperação.';
+                $erro = 'Não foi possível gerar a recuperação.';
             }
         } else {
-            $mensagem = $mensagemGenerica;
+            // Resposta genérica para não revelar quais e-mails estão cadastrados.
+            $mensagem = 'Se o e-mail estiver cadastrado, você receberá as instruções para redefinir sua senha.';
         }
     }
 }
@@ -84,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <span>BLUE <b>LIGHT</b></span>
   </div>
 
-  <h1>Esqueci minha senha</h1>
-  <p class="bl-auth-sub">Digite o e-mail da sua conta. Enviaremos um código de 6 dígitos.</p>
+  <h1>Esqueci a senha</h1>
+  <p class="bl-auth-sub">Digite o e-mail da sua conta. Enviaremos um link para criar uma nova senha.</p>
 
   <?php if ($mensagem): ?>
     <div class="bl-flash sucesso msg" role="status"><?= e($mensagem) ?></div>
@@ -100,12 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="bl-field">
       <i class="fa-regular fa-envelope bl-icon"></i>
-      <input type="email" name="email" placeholder="Seu e-mail" required autocomplete="email" aria-label="E-mail">
+      <input type="email" name="email" placeholder="Seu e-mail" required aria-label="E-mail">
     </div>
 
     <button type="submit" class="bl-btn bl-btn-primary bl-auth-submit">
       <span class="bl-spinner"></span>
-      <span class="bl-btn-label">Enviar código</span>
+      <span class="bl-btn-label">Enviar confirmação</span>
     </button>
 
     <a href="../entrar.php" class="cadastro">Voltar ao login</a>

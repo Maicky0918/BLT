@@ -41,3 +41,7 @@ ALTERAÇÕES DESTA VERSÃO
 - Link de recuperação de senha foi corrigido para usar a URL base do projeto.
 - Lembrete de renovação aponta para pagamento.php na mesma instalação.
 - .env não é incluído no pacote.
+
+
+PERÍODOS DE ASSINATURA
+Antes de usar a versão atualizada em um banco existente, faça backup e execute migracao_periodos_assinatura.sql no phpMyAdmin. O arquivo adiciona o período e converte os códigos antigos, preservando o histórico de pagamentos.

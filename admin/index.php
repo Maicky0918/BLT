@@ -24,7 +24,7 @@ $totais = [
 ];
 
 $ultimosPagamentos = adminQuery($conn, "
-    SELECT u.nome, u.email, a.plano, a.metodo, a.valor, a.status, a.criado_em
+    SELECT u.nome, u.email, a.plano, a.periodo, a.metodo, a.valor, a.status, a.criado_em
     FROM assinaturas a
     INNER JOIN usuarios u ON u.id = a.usuario_id
     ORDER BY a.criado_em DESC
@@ -34,7 +34,7 @@ $ultimosPagamentos = adminQuery($conn, "
 $usuarios = adminQuery($conn, "
     SELECT
         u.id, u.nome, u.email, u.ativo, u.criado_em, u.ultimo_login, u.assinatura_ate,
-        COALESCE(a.plano, '-') AS ultimo_plano,
+        COALESCE(a.periodo, a.plano, '-') AS ultimo_plano,
         COALESCE(a.metodo, '-') AS metodo_pagamento,
         COALESCE(a.valor, 0) AS ultimo_valor
     FROM usuarios u
@@ -144,7 +144,7 @@ function statusAssinaturaAdmin(?string $data): array
           <div class="bl-payment-item">
             <div class="bl-payment-main">
               <strong><?= e($p['nome']) ?></strong>
-              <small><?= e($p['email']) ?> · <?= e(ucfirst($p['plano'])) ?></small>
+              <small><?= e($p['email']) ?> · <?= e(ucfirst($p['periodo'] ?? $p['plano'])) ?></small>
             </div>
             <div class="bl-payment-side">
               <strong><?= e(formatarMoeda((float)$p['valor'])) ?></strong>

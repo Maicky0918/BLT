@@ -102,27 +102,18 @@ function enviarEmailHtml(string $destinatario, string $assunto, string $html): b
     }
 }
 
-function enviarEmailRecuperacao(string $destinatario, string $nome, string $codigo): bool
+function enviarEmailRecuperacao(string $destinatario, string $nome, string $link): bool
 {
     $nomeSeguro = htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
-    $codigoSeguro = htmlspecialchars($codigo, ENT_QUOTES, 'UTF-8');
-
-    $html = '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"></head>'
-          . '<body style="font-family:Arial,sans-serif;background:#0b1020;color:#fff;padding:30px">'
+    $linkSeguro = htmlspecialchars($link, ENT_QUOTES, 'UTF-8');
+    $html = '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"></head><body style="font-family:Arial,sans-serif;background:#0b1020;color:#fff;padding:30px">'
           . '<div style="max-width:600px;margin:auto;background:#151b2e;padding:30px;border-radius:12px">'
-          . '<h1 style="margin-top:0">Blue Light</h1>'
-          . '<p>Olá, ' . $nomeSeguro . '.</p>'
-          . '<p>Recebemos uma solicitação para redefinir a senha da sua conta.</p>'
-          . '<p style="margin:28px 0;text-align:center">'
-          . '<span style="display:inline-block;padding:16px 24px;background:#0b1020;border:1px solid #4f7cff;'
-          . 'border-radius:10px;font-size:30px;font-weight:700;letter-spacing:8px;color:#fff">'
-          . $codigoSeguro . '</span></p>'
-          . '<p>Digite este código na página de recuperação do Blue Light.</p>'
-          . '<p>O código é válido por <strong>10 minutos</strong> e pode ser usado apenas uma vez.</p>'
-          . '<p>Se você não solicitou a recuperação, ignore este e-mail.</p>'
-          . '</div></body></html>';
-
-    return enviarEmailHtml($destinatario, 'Código de recuperação de senha - Blue Light', $html);
+          . '<h1>Blue Light</h1><p>Olá, ' . $nomeSeguro . '.</p>'
+          . '<p>Recebemos uma solicitação para alterar a senha da sua conta.</p>'
+          . '<p><a href="' . $linkSeguro . '" style="display:inline-block;padding:12px 20px;background:#4f7cff;color:#fff;text-decoration:none;border-radius:8px">Redefinir minha senha</a></p>'
+          . '<p>Este link é válido por 30 minutos e só pode ser utilizado uma vez.</p>'
+          . '<p>Se você não solicitou esta alteração, ignore este e-mail.</p></div></body></html>';
+    return enviarEmailHtml($destinatario, 'Recuperação de senha - Blue Light', $html);
 }
 
 function enviarEmailLembreteRenovacao(string $destinatario, string $nome, ?string $plano, ?string $assinaturaAte): bool
