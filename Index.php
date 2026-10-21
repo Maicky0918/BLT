@@ -342,7 +342,7 @@ $favChronocide = in_array('chronocide', $favoritos, true);
 
 <footer class="bl-footer" id="contato">
   <div class="container">
-    <div>© 2026 BlueLight. Todos os direitos reservados.</div>
+    <div>© 2026 BlueLight. Todos os direitos reservads.</div>
     <div class="bl-footer-links">
       <a href="termos.html">Termos de Uso</a>
       <a href="<?= $logado ? 'php/perfil.php' : 'login.php' ?>"><?= $logado ? 'Minha conta' : 'Criar conta' ?></a>

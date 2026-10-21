@@ -61,7 +61,7 @@ if (!empty($_SESSION['visitou_biblioteca']) && !empty($_SESSION['visitou_planos'
       <div class="bl-resumo">
         <h3><?= e($info['nome']) ?></h3>
         <div class="bl-resumo-preco"><?= e(formatarMoeda((float)$info['valor'])) ?>/mês</div>
-        <div class="bl-resumo-specs"><?= e($info['ram']) ?> · <?= e($info['ssd']) ?> · <?= e($info['suporte']) ?></div>
+        <div class="bl-resumo-specs"><?= e($info['rm']) ?> · <?= e($info['sd']) ?> · <?= e($info['suporte']) ?></div>
       </div>
 
       <form action="php/assinatura.php" method="post" data-bl-loading>
