@@ -41,7 +41,7 @@ $favChronocide = in_array('chronocide', $favoritos, true);
 <meta name="description" content="Blue Light — plataforma de jogos premium. Jogue, assine e desbloqueie conquistas.">
 
 <link rel="stylesheet" href="Css/design-system.css">
-<link rel="stylesheet" href="Css/index.css?v=<?= time() ?>">
+<link rel="stylesheet" href="Css/Index.css?v=<?= time() ?>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <title>BlueLight | Plataforma de Jogos</title>

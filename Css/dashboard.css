@@ -1,70 +1,1110 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @import url('design-system.css');
 
-.bl-dash-page{ padding: calc(var(--header-h) + 40px) 0 60px; min-height:100vh; }
-.bl-dash-header{
-  position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:1000;
-  background:rgba(5,8,16,.72); backdrop-filter:blur(14px); border-bottom:1px solid var(--surface-border);
-  display:flex; align-items:center;
-}
-.bl-dash-header .container{ display:flex; align-items:center; justify-content:space-between; }
-.bl-dash-header .bl-logo{ display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:700; color:var(--text-0); }
-.bl-dash-header .bl-logo img{ width:36px; height:36px; }
-.bl-dash-header nav{ display:flex; gap:8px; }
-.bl-dash-header nav a{ color:var(--text-1); text-decoration:none; font-size:14px; padding:8px 12px; border-radius:var(--r-pill); transition: background var(--t-fast); }
-.bl-dash-header nav a:hover, .bl-dash-header nav a.active{ background:var(--surface-strong); color:#fff; }
+/* ==========================================================
+   PÁGINAS DO PAINEL — BLUE LIGHT TEAM
+   Usado por: perfil.php, biblioteca.php e conquistas.php
+   ========================================================== */
 
-.bl-dash-hero{ display:flex; align-items:center; gap:18px; margin-bottom:var(--sp-4); }
-.bl-avatar-lg{
-  width:66px; height:66px; border-radius:50%; flex-shrink:0;
-  background:linear-gradient(135deg,var(--primary),var(--accent)); color:#04101f;
-  display:grid; place-items:center; font-size:26px; font-weight:800;
-  box-shadow: var(--shadow-glow);
-}
-.bl-dash-hero h1{ margin:0 0 4px; font-size:28px; }
-.bl-dash-hero p{ margin:0; color:var(--text-2); }
+/* ==========================================================
+   1. ESTRUTURA GERAL (mesma largura e espaçamento nas 3 páginas)
+   ========================================================== */
 
-.bl-info-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:var(--sp-4) 0; }
-@media (max-width:650px){ .bl-info-grid{ grid-template-columns:1fr; } }
-.bl-info{ padding:18px; }
-.bl-info strong{ display:block; font-size:12.5px; color:var(--text-2); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; }
-.bl-info span, .bl-info div.bl-info-val{ font-size:16px; font-weight:600; }
+.bl-dash-page {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
 
-.bl-status-pill{ display:inline-flex; align-items:center; gap:8px; font-weight:700; }
-.bl-status-pill.on{ color:#4ade80; }
-.bl-status-pill.off{ color:#fca5b1; }
+    /* largura única para as três páginas */
+    width: min(1000px, calc(100% - 48px)) !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 120px 0 60px !important;
 
-.bl-acoes{ display:flex; flex-wrap:wrap; gap:10px; margin-top:var(--sp-3); }
-
-.bl-progress-bar{ height:10px; border-radius:var(--r-pill); background:var(--surface); overflow:hidden; margin:10px 0; }
-.bl-progress-bar > span{
-  display:block; height:100%; border-radius:var(--r-pill);
-  background:linear-gradient(90deg,var(--primary),var(--accent));
-  transition: width 1s var(--ease);
+    /* espaçamento vertical automático entre os blocos */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-/* Biblioteca */
-.bl-game-showcase{ display:flex; gap:22px; padding:var(--sp-4); align-items:center; }
-.bl-game-showcase img{ width:180px; height:130px; border-radius:var(--r-md); object-fit:cover; flex-shrink:0; }
-@media (max-width:560px){ .bl-game-showcase{ flex-direction:column; text-align:center; } .bl-game-showcase img{ width:100%; height:160px; } }
-.bl-game-showcase h2{ margin:0 0 8px; }
-.bl-game-showcase p{ color:var(--text-2); margin:0 0 14px; }
+/* Brilhos de fundo */
+.bl-dash-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 78% 30%, var(--primary-glow) 0%, transparent 55%),
+        radial-gradient(circle at 10% 90%, var(--accent-glow) 0%, transparent 45%);
+}
 
-/* Conquistas */
-.bl-badge-list{ display:flex; flex-direction:column; gap:12px; margin:var(--sp-3) 0; }
-.bl-achievement{
-  display:flex; align-items:center; gap:16px; padding:18px;
-  transition: transform var(--t-med), border-color var(--t-med);
+.bl-dash-page > * {
+    position: relative;
+    min-width: 0;
 }
-.bl-achievement.unlocked{ border-color:rgba(59,130,246,.4); }
-.bl-achievement.unlocked:hover{ transform:translateX(4px); }
-.bl-achievement .bl-ach-icon{
-  width:52px; height:52px; border-radius:50%; display:grid; place-items:center; font-size:22px; flex-shrink:0;
-  background:var(--surface-strong); color:var(--locked);
+
+/* Título da página */
+.bl-dash-hero h1 {
+    margin: 0 0 8px;
+    color: var(--text-0);
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 800;
+    line-height: 1.2;
 }
-.bl-achievement.unlocked .bl-ach-icon{
-  background:linear-gradient(135deg,var(--primary),var(--accent)); color:#04101f;
-  animation: bl-pulse-ring 1.6s ease-out 1;
+
+.bl-dash-hero p {
+    margin: 0;
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.6;
 }
-.bl-achievement strong{ display:block; font-size:15.5px; }
-.bl-achievement small{ color:var(--text-2); font-size:13px; }
+
+/* ==========================================================
+   2. CARTÕES (base para todas as páginas)
+   ========================================================== */
+
+.bl-dash-page .bl-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-md);
+    transition:
+        border-color var(--t-med),
+        box-shadow var(--t-med),
+        transform var(--t-med);
+}
+
+.bl-dash-page > .bl-card {
+    margin-bottom: 0 !important;
+}
+
+/* ==========================================================
+   3. PERFIL — CARTÃO DO JOGADOR
+   ========================================================== */
+
+.bl-gamercard {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 28px;
+    background: linear-gradient(145deg, rgba(17, 42, 66, 0.94), rgba(7, 15, 32, 0.98));
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.bl-gamercard-top {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.bl-gamercard-top > div:last-child {
+    min-width: 0;
+}
+
+.bl-gamercard h1 {
+    margin: 0;
+    color: var(--text-0);
+    font-size: clamp(22px, 3.2vw, 32px);
+    font-weight: 800;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+/* Avatar com a inicial do nome */
+.bl-dash-page .bl-avatar-lg {
+    position: relative;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 0 28px rgba(34, 211, 238, 0.25);
+}
+
+/* Etiqueta de nível sobre o avatar */
+.bl-level-chip {
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+    background: #0b1224;
+    border: 1px solid rgba(34, 211, 238, 0.5);
+    color: #67e8f9;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.bl-username {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0 0;
+    color: var(--text-2);
+    font-size: 14px;
+}
+
+/* Linha de XP */
+.bl-xp-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+    color: var(--text-2);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ==========================================================
+   4. BARRA DE PROGRESSO (perfil e conquistas)
+   ========================================================== */
+
+.bl-progress-bar {
+    width: 100%;
+    height: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: var(--r-pill);
+    background: rgba(148, 163, 184, 0.16);
+}
+
+.bl-progress-bar > span {
+    display: block;
+    height: 100%;
+    min-width: 6px;
+    border-radius: var(--r-pill);
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.45);
+    transition: width 0.6s ease;
+}
+
+.bl-progress-bar.bl-xp-bar {
+    margin-bottom: 0;
+}
+
+/* ==========================================================
+   5. PERFIL — CAIXAS DE INFORMAÇÃO
+   ========================================================== */
+
+.bl-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.bl-info {
+    padding: 18px 20px;
+}
+
+.bl-info:hover {
+    transform: translateY(-3px);
+    border-color: rgba(34, 211, 238, 0.4);
+    box-shadow: var(--shadow-glow);
+}
+
+.bl-info strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-2);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.bl-info-val {
+    color: var(--text-0);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Caixas de estatística (ícone + número grande) */
+.bl-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 16px;
+}
+
+.bl-stat > i {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    color: var(--accent);
+    font-size: 20px;
+}
+
+.bl-stat .bl-info-val {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+/* Etiquetas de status da assinatura */
+.bl-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.bl-status-pill.on {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.28);
+    color: #86efac;
+}
+
+.bl-status-pill.off {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    color: #fca5a5;
+}
+
+/* ==========================================================
+   6. PERFIL — ATIVIDADE RECENTE
+   ========================================================== */
+
+.bl-activity-card {
+    padding: 24px;
+}
+
+.bl-activity-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 12px;
+    color: var(--text-0);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.bl-activity-card h3 i {
+    color: var(--accent);
+}
+
+.bl-activity-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bl-activity-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--surface-border);
+}
+
+.bl-activity-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.bl-activity-list li > i {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(34, 211, 238, 0.1);
+    color: var(--accent);
+    font-size: 13px;
+}
+
+.bl-activity-list li > span {
+    flex: 1;
+    min-width: 0;
+    color: var(--text-0);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.bl-activity-list li > time {
+    flex-shrink: 0;
+    color: var(--text-2);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* ==========================================================
+   7. BIBLIOTECA — ABAS E JOGO
+   ========================================================== */
+
+.bl-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bl-tab {
+    padding: 10px 20px;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--r-pill);
+    background: rgba(148, 163, 184, 0.06);
+    color: var(--text-2);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background var(--t-fast),
+        color var(--t-fast),
+        border-color var(--t-fast);
+}
+
+.bl-tab:hover {
+    color: var(--text-0);
+    border-color: rgba(34, 211, 238, 0.4);
+}
+
+.bl-tab.active {
+    background: var(--primary);
+    border-color: transparent;
+    color: #fff;
+}
+
+/* Cartão do jogo */
+.bl-game-showcase {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 24px;
+}
+
+.bl-game-showcase:hover {
+    border-color: rgba(34, 211, 238, 0.4);
+    box-shadow: var(--shadow-glow);
+}
+
+.bl-game-showcase > img {
+    flex-shrink: 0;
+    width: 340px;
+    max-width: 45%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid var(--surface-border);
+}
+
+.bl-game-showcase h2 {
+    margin: 0 0 8px;
+    color: var(--text-0);
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.bl-game-showcase p {
+    margin: 0 0 22px;
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ==========================================================
+   8. ESTADO VAZIO, BOTÕES E AVISOS
+   ========================================================== */
+
+.bl-empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-2);
+    background: var(--surface);
+    border: 1px dashed var(--surface-border);
+    border-radius: var(--r-lg);
+}
+
+.bl-empty[hidden] {
+    display: none;
+}
+
+.bl-empty-icon {
+    margin-bottom: 14px;
+    color: var(--text-2);
+    font-size: 40px;
+    line-height: 1;
+}
+
+.bl-empty h2 {
+    color: var(--text-0);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* Grupo de botões no fim da página */
+.bl-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Aviso (flash) */
+.bl-flash {
+    padding: 14px 18px;
+    border-radius: var(--r-lg);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    background: rgba(34, 211, 238, 0.08);
+    color: var(--text-0);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.bl-flash.success,
+.bl-flash.sucesso {
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.1);
+    color: #86efac;
+}
+
+.bl-flash.error,
+.bl-flash.erro {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+}
+
+/* ==========================================================
+   9. CONQUISTAS — TÍTULOS DAS CATEGORIAS
+   ========================================================== */
+
+.bl-cat-heading {
+    position: relative;
+    margin: 12px 0 -6px;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    color: var(--text-0);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* ==========================================================
+   10. CONQUISTAS — LISTA
+   ========================================================== */
+
+.bl-badge-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--sp-3);
+}
+
+.bl-badge-list .bl-achievement {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    padding: 20px;
+    overflow: hidden;
+    background: linear-gradient(145deg, rgba(17, 27, 51, 0.96), rgba(7, 12, 26, 0.98));
+    border: 1px solid var(--surface-border);
+    border-radius: var(--r-lg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    transition:
+        transform var(--t-med),
+        border-color var(--t-med),
+        box-shadow var(--t-med),
+        background var(--t-med);
+}
+
+.bl-badge-list .bl-achievement::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 18px;
+    right: 18px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+    opacity: 0.35;
+    transition: opacity var(--t-med);
+}
+
+.bl-badge-list .bl-achievement:hover {
+    transform: translateY(-4px);
+    border-color: rgba(34, 211, 238, 0.4);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.25),
+        0 0 22px rgba(34, 211, 238, 0.07);
+}
+
+.bl-badge-list .bl-achievement:hover::before {
+    opacity: 0.9;
+}
+
+.bl-badge-list .bl-achievement.unlocked {
+    border-color: rgba(34, 211, 238, 0.3);
+    background: linear-gradient(145deg, rgba(17, 42, 66, 0.94), rgba(7, 15, 32, 0.98));
+}
+
+.bl-badge-list .bl-achievement.unlocked::before {
+    opacity: 0.75;
+}
+
+.bl-badge-list .bl-achievement.unlocked:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Ícones das conquistas */
+.bl-badge-list .bl-ach-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: rgba(148, 163, 184, 0.08);
+    border: 1px solid var(--surface-border);
+    color: var(--text-2);
+    font-size: 18px;
+    transition:
+        transform var(--t-med),
+        box-shadow var(--t-med),
+        border-color var(--t-med);
+}
+
+.bl-badge-list .bl-achievement:hover .bl-ach-icon {
+    transform: scale(1.06);
+}
+
+.bl-badge-list .bl-achievement.unlocked .bl-ach-icon {
+    background: rgba(34, 211, 238, 0.1);
+    color: var(--accent);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.12);
+    border-color: rgba(34, 211, 238, 0.35);
+}
+
+/* Textos */
+.bl-badge-list .bl-achievement > div[style*="flex:1"] {
+    flex: 1;
+    min-width: 0;
+}
+
+.bl-badge-list .bl-achievement strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-0);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.bl-badge-list .bl-achievement small {
+    display: block;
+    color: var(--text-2);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ==========================================================
+   11. ETIQUETAS (bl-badge) — valem em todas as páginas
+   ========================================================== */
+
+.bl-badge {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 11px;
+    border-radius: var(--r-pill);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+    transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.bl-badge-popular {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.bl-badge-locked {
+    background: rgba(148, 163, 184, 0.08);
+    color: var(--text-2);
+    border: 1px solid var(--surface-border);
+}
+
+.bl-badge-ok {
+    background: rgba(34, 197, 94, 0.12);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.28);
+}
+
+/* ==========================================================
+   12. RESPONSIVIDADE
+   ========================================================== */
+
+@media (max-width: 900px) {
+    .bl-badge-list {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .bl-game-showcase > img {
+        width: 280px;
+    }
+}
+
+@media (max-width: 650px) {
+    .bl-dash-page {
+        width: calc(100% - 32px) !important;
+        padding-top: 150px !important;
+        padding-bottom: 40px !important;
+        gap: 20px;
+    }
+
+    .bl-gamercard {
+        padding: 20px;
+    }
+
+    .bl-gamercard-top {
+        gap: 16px;
+    }
+
+    .bl-dash-page .bl-avatar-lg {
+        width: 68px;
+        height: 68px;
+        font-size: 28px;
+    }
+
+    .bl-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .bl-stat .bl-info-val {
+        font-size: 24px;
+    }
+
+    .bl-activity-card {
+        padding: 18px;
+    }
+
+    .bl-activity-list li {
+        flex-wrap: wrap;
+        gap: 4px 12px;
+    }
+
+    .bl-activity-list li > span {
+        flex-basis: calc(100% - 50px);
+    }
+
+    .bl-activity-list li > time {
+        margin-left: 44px;
+    }
+
+    .bl-game-showcase {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        padding: 18px;
+    }
+
+    .bl-game-showcase > img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .bl-cat-heading {
+        margin: 10px 0 -4px;
+        font-size: 19px;
+    }
+
+    .bl-badge-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .bl-badge-list .bl-achievement {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .bl-badge-list .bl-achievement > div[style*="flex:1"] {
+        flex-basis: calc(100% - 60px);
+    }
+
+    .bl-badge-list .bl-achievement > .bl-badge {
+        margin-left: 0;
+    }
+}
+
+/* ==========================================================
+   13. ACESSIBILIDADE — REDUZIR ANIMAÇÕES
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .bl-dash-page .bl-card,
+    .bl-info,
+    .bl-tab,
+    .bl-progress-bar > span,
+    .bl-badge-list .bl-achievement,
+    .bl-badge-list .bl-achievement .bl-ach-icon {
+        transition: none;
+    }
+
+    .bl-info:hover,
+    .bl-badge-list .bl-achievement:hover,
+    .bl-badge-list .bl-achievement:hover .bl-ach-icon {
+        transform: none;
+    }
+}
+
+/* ==========================================================
+   14. CABEÇALHO (único bloco — igual nas 3 páginas)
+   ========================================================== */
+
+.bl-dash-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 80px !important;
+    min-height: 80px !important;
+    z-index: 9999 !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    background: rgba(0, 0, 0, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 234, 255, 0.25) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.bl-dash-header > .container {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 32px !important;
+    box-sizing: border-box !important;
+}
+
+/* Logo à esquerda */
+.bl-dash-header .bl-logo {
+    position: relative !important;
+    z-index: 2;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
+    height: 100% !important;
+    margin: 0 !important;
+    text-decoration: none;
+}
+
+.bl-dash-header .bl-logo img {
+    height: 44px;
+    width: auto;
+}
+
+.bl-dash-header .bl-logo span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+/* Links centralizados na tela */
+.bl-dash-header nav {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 22px;
+
+    width: max-content !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.bl-dash-header nav a,
+.bl-dash-header nav button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.bl-dash-header nav a {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color var(--t-fast);
+}
+
+.bl-dash-header nav a:hover,
+.bl-dash-header nav a.active {
+    color: var(--accent);
+}
+
+.bl-dash-header nav a::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Botão de tema redondo */
+.bl-dash-header .bl-theme-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .bl-dash-header {
+        height: auto !important;
+        min-height: 80px !important;
+    }
+
+    .bl-dash-header > .container {
+        flex-wrap: wrap;
+        justify-content: center !important;
+        gap: 10px;
+        padding: 12px 16px !important;
+    }
+
+    .bl-dash-header nav {
+        position: static !important;
+        transform: none !important;
+        width: auto !important;
+        height: auto !important;
+        min-height: 40px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+/* ==========================================================
+   15. RODAPÉ
+   ========================================================== */
+
+footer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: 40px;
+}
+
+footer,
+footer * {
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 650px) {
+    footer {
+        margin-top: 28px;
+    }
+}
+
+/* ==========================================================
+   16. MODO CLARO
+   ========================================================== */
+
+/* Cabeçalho */
+[data-theme="light"] .bl-dash-header {
+    background: #ffffff !important;
+    border-bottom: 1px solid #dbe4f0 !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .bl-dash-header nav a {
+    color: #1e293b !important;
+}
+
+[data-theme="light"] .bl-dash-header nav a.active,
+[data-theme="light"] .bl-dash-header nav a:hover {
+    color: #0284c7 !important;
+}
+
+[data-theme="light"] .bl-dash-header .bl-logo span {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .bl-dash-header .bl-theme-toggle,
+[data-theme="light"] .bl-dash-header button {
+    color: #1e293b !important;
+    border-color: #dbe4f0;
+    background: #f1f5f9;
+}
+
+/* Cartões */
+[data-theme="light"] .bl-dash-page .bl-card {
+    background: #ffffff !important;
+    border: 1px solid #dbe4f0 !important;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Títulos e textos */
+[data-theme="light"] .bl-dash-hero h1,
+[data-theme="light"] .bl-gamercard h1,
+[data-theme="light"] .bl-cat-heading,
+[data-theme="light"] .bl-activity-card h3,
+[data-theme="light"] .bl-game-showcase h2,
+[data-theme="light"] .bl-empty h2,
+[data-theme="light"] .bl-info-val,
+[data-theme="light"] .bl-achievement strong {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .bl-dash-hero p,
+[data-theme="light"] .bl-game-showcase p,
+[data-theme="light"] .bl-achievement small,
+[data-theme="light"] .bl-info strong,
+[data-theme="light"] .bl-username,
+[data-theme="light"] .bl-xp-row,
+[data-theme="light"] .bl-activity-list li > time {
+    color: #475569 !important;
+}
+
+[data-theme="light"] .bl-activity-list li > span {
+    color: #1e293b !important;
+}
+
+/* Cartão do jogador */
+[data-theme="light"] .bl-gamercard {
+    background: #ffffff;
+    border: 1px solid #dbe4f0;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .bl-level-chip {
+    background: #e0f2fe;
+    border-color: #7dd3fc;
+    color: #0369a1;
+}
+
+/* Barra de progresso */
+[data-theme="light"] .bl-progress-bar {
+    background: #e2e8f0;
+}
+
+/* Caixas de estatística e atividade */
+[data-theme="light"] .bl-stat > i,
+[data-theme="light"] .bl-activity-list li > i {
+    background: #eaf6ff;
+    border-color: #bae6fd;
+    color: #0284c7;
+}
+
+[data-theme="light"] .bl-activity-list li {
+    border-bottom-color: #e2e8f0;
+}
+
+/* Status */
+[data-theme="light"] .bl-status-pill.on {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #15803d;
+}
+
+[data-theme="light"] .bl-status-pill.off {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+/* Abas */
+[data-theme="light"] .bl-tab {
+    background: #ffffff;
+    border-color: #dbe4f0;
+    color: #475569;
+}
+
+[data-theme="light"] .bl-tab.active {
+    background: var(--primary);
+    border-color: transparent;
+    color: #fff;
+}
+
+/* Estado vazio */
+[data-theme="light"] .bl-empty {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+[data-theme="light"] .bl-empty-icon {
+    color: #94a3b8;
+}
+
+/* Etiquetas */
+[data-theme="light"] .bl-badge-popular {
+    background: #dbeafe;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+}
+
+[data-theme="light"] .bl-badge-locked {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+[data-theme="light"] .bl-badge-ok {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #15803d;
+}
+
+/* Ícones das conquistas */
+[data-theme="light"] .bl-ach-icon {
+    background: #eaf6ff !important;
+    color: #0284c7 !important;
+    border-color: #bae6fd !important;
+}
