@@ -29,6 +29,7 @@ if (!empty($_SESSION['visitou_biblioteca']) && !empty($_SESSION['visitou_planos'
 <title>Biblioteca | Blue Light</title>
 <link rel="stylesheet" href="../Css/design-system.css">
 <link rel="stylesheet" href="../Css/dashboard.css?v=<?= time() ?>">
+<link rel="stylesheet" href="../Css/responsive.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>

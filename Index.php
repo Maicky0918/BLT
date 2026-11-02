@@ -42,6 +42,7 @@ $favChronocide = in_array('chronocide', $favoritos, true);
 
 <link rel="stylesheet" href="Css/design-system.css">
 <link rel="stylesheet" href="Css/Index.css?v=<?= time() ?>">
+<link rel="stylesheet" href="Css/responsive.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <title>BlueLight | Plataforma de Jogos</title>
@@ -671,15 +672,10 @@ $favChronocide = in_array('chronocide', $favoritos, true);
                     </ul>
 
                     <a
-                        class="neymar"
+                        class="bl-link-contratar bl-btn <?= $p[5] ? 'bl-btn-primary' : 'bl-btn-ghost' ?>"
                         href="<?= $logado ? 'pagamento.php?plano=' . e($slug) : 'entrar.php' ?>"
                     >
-                        <button
-                            class="bl-btn <?= $p[5] ? 'bl-btn-primary' : 'bl-btn-ghost' ?>"
-                            type="button"
-                        >
-                            Contratar
-                        </button>
+                        Contratar
                     </a>
 
                 </div>

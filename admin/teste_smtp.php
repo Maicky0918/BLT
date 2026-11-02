@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Teste SMTP | Blue Light</title><link rel="stylesheet" href="../Css/design-system.css"><link rel="stylesheet" href="dashboard.css"></head>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Teste SMTP | Blue Light</title><link rel="stylesheet" href="../Css/design-system.css"><link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="../Css/responsive.css"></head>
 <body><main class="container bl-admin-page"><div class="bl-admin-title"><div><p class="bl-admin-kicker">Admin</p><h1>Teste SMTP</h1><p>Envia um único e-mail para a conta configurada no SMTP.</p></div></div>
 <?php if ($ok): ?><div class="bl-admin-alert sucesso"><?= e($ok) ?></div><?php endif; ?>
 <?php if ($erro): ?><div class="bl-admin-alert erro"><strong>Falha no SMTP:</strong><br><?= e($erro) ?></div><?php endif; ?>

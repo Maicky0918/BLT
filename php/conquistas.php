@@ -38,6 +38,7 @@ $raridadeLabel = ['comum' => 'Comum', 'raro' => 'Raro', 'epico' => 'Épico', 'le
 <title>Conquistas | Blue Light</title>
 <link rel="stylesheet" href="../Css/design-system.css">
 <link rel="stylesheet" href="../Css/dashboard.css?v=<?= time() ?>">
+<link rel="stylesheet" href="../Css/responsive.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -75,7 +76,7 @@ $raridadeLabel = ['comum' => 'Comum', 'raro' => 'Raro', 'epico' => 'Épico', 'le
     <?php foreach ($itens as $c): $desbloqueada = $c['desbloqueada_em'] !== null; ?>
     <div class="bl-card bl-achievement <?= $desbloqueada ? 'unlocked' : '' ?>">
       <div class="bl-ach-icon"><i class="<?= $desbloqueada ? e($c['icone']) : 'fa-solid fa-lock' ?>"></i></div>
-      <div style="flex:1;">
+      <div class="bl-achievement-content">
         <strong><?= e($c['nome']) ?></strong>
         <small><?= e($c['descricao']) ?></small>
       </div>

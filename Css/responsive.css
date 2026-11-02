@@ -1,0 +1,387 @@
+/* ==========================================================
+   BLUE LIGHT — AJUSTES RESPONSIVOS GERAIS
+   Aplicado às páginas públicas, autenticação, painel e admin.
+   ========================================================== */
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, video, iframe {
+    max-width: 100%;
+}
+
+button, input, select, textarea {
+    max-width: 100%;
+}
+
+.container {
+    min-width: 0;
+}
+
+.bl-btn {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+}
+
+.bl-hero .container,
+.bl-checkout-grid,
+.bl-info-grid,
+.bl-badge-list,
+.bl-plan-grid,
+.bl-benefits,
+.bl-cat-grid {
+    min-width: 0;
+}
+
+.bl-game-card,
+.bl-plan,
+.bl-benefit,
+.bl-info,
+.bl-card,
+.bl-admin-card,
+.bl-checkout-card,
+.bl-plan-compare {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.bl-game-card img,
+.bl-hero-visual img,
+.bl-banner img,
+.bl-game-showcase img {
+    max-width: 100%;
+    height: auto;
+}
+
+.bl-search input,
+.bl-field input,
+.bl-field textarea,
+.bl-field select,
+form input:not([type="checkbox"]):not([type="radio"]),
+form textarea,
+form select {
+    min-width: 0;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .bl-hero {
+        min-height: auto;
+        padding-top: calc(var(--header-h) + 42px);
+    }
+
+    .bl-hero .container {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .bl-hero-visual {
+        width: min(100%, 560px);
+        margin-inline: auto;
+    }
+
+    .bl-game-grid,
+    .bl-games-grid,
+    .bl-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bl-plan-grid,
+    .bl-benefits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bl-plan.is-recommended {
+        transform: none;
+    }
+
+    .bl-banner,
+    .bl-banner .bl-slide img {
+        min-height: 340px;
+    }
+
+    .bl-banner .bl-slide-text {
+        left: 28px;
+        bottom: 28px;
+        max-width: min(70%, 480px);
+    }
+
+    .bl-dash-page {
+        width: min(1000px, calc(100% - 36px)) !important;
+    }
+}
+
+/* Celulares */
+@media (max-width: 640px) {
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    .bl-header {
+        height: 68px;
+    }
+
+    .bl-header .container {
+        gap: 10px;
+    }
+
+    .bl-logo {
+        gap: 8px;
+        font-size: 17px;
+    }
+
+    .bl-logo img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .bl-mobile-menu {
+        inset: 68px 0 0;
+        padding: 20px;
+    }
+
+    .bl-hero {
+        padding: 104px 0 42px;
+    }
+
+    .bl-hero h1 {
+        font-size: clamp(30px, 9vw, 44px);
+        overflow-wrap: anywhere;
+    }
+
+    .bl-hero p {
+        font-size: 15px;
+    }
+
+    .bl-hero-ctas,
+    .bl-hero-stats {
+        justify-content: center;
+    }
+
+    .bl-hero-ctas .bl-btn {
+        flex: 1 1 145px;
+    }
+
+    .bl-game-grid,
+    .bl-games-grid,
+    .bl-cards,
+    .bl-plan-grid,
+    .bl-benefits,
+    .bl-cat-grid,
+    .bl-info-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .bl-game-card .bl-body,
+    .bl-plan,
+    .bl-benefit {
+        padding: 18px;
+    }
+
+    .bl-plan .bl-price {
+        font-size: 36px;
+    }
+
+    .bl-banner,
+    .bl-banner .bl-slide img {
+        min-height: 300px;
+    }
+
+    .bl-banner .bl-slide-text {
+        left: 18px;
+        right: 18px;
+        bottom: 22px;
+        max-width: none;
+    }
+
+    .bl-banner .bl-slide-text h2 {
+        font-size: clamp(24px, 7vw, 34px);
+    }
+
+    .bl-banner .bl-dots {
+        right: 16px;
+        bottom: 12px;
+    }
+
+    .modal-content {
+        padding: 30px 20px 24px;
+    }
+
+    .bl-auth-body {
+        padding: 16px;
+    }
+
+    body.bl-auth-body > main.container {
+        width: 100%;
+        max-width: 460px;
+        padding: 32px 22px;
+    }
+
+    .bl-checkout-page {
+        padding-top: 28px;
+        padding-bottom: 32px;
+    }
+
+    .bl-checkout-head h1 {
+        font-size: clamp(26px, 8vw, 34px);
+    }
+
+    .bl-plan-compare,
+    .bl-checkout-card {
+        padding: 18px;
+    }
+
+    .bl-compare-row {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 12px;
+    }
+
+    .bl-compare-row > div:first-child {
+        min-width: 0;
+        flex: 1 1 150px;
+    }
+
+    .bl-compare-row .bl-compare-price {
+        font-size: 15px;
+    }
+
+    .bl-metodo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bl-dash-page {
+        width: calc(100% - 28px) !important;
+        padding-top: 150px !important;
+        padding-bottom: 34px !important;
+    }
+
+    .bl-dash-header > .container {
+        width: calc(100% - 24px);
+    }
+
+    .bl-dash-header nav {
+        justify-content: center;
+        gap: 8px 12px !important;
+    }
+
+    .bl-dash-header nav a {
+        font-size: 12px !important;
+    }
+
+    .bl-gamercard {
+        padding: 18px;
+    }
+
+    .bl-gamercard-top {
+        align-items: flex-start;
+    }
+
+    .bl-gamercard h1 {
+        font-size: clamp(20px, 6vw, 28px);
+        overflow-wrap: anywhere;
+    }
+
+    .bl-xp-row {
+        flex-wrap: wrap;
+    }
+
+    .bl-achievement-content strong {
+        font-size: 14px;
+    }
+
+    .bl-achievement-content small {
+        font-size: 12px;
+    }
+
+    .bl-badge {
+        font-size: 10px;
+        padding: 6px 9px;
+    }
+
+    .bl-admin-inner {
+        padding-inline: 14px;
+        gap: 10px;
+    }
+
+    .bl-admin-page {
+        width: calc(100% - 28px);
+        padding-top: 100px !important;
+    }
+
+    .bl-admin-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bl-admin-stat {
+        padding: 13px;
+        overflow-wrap: anywhere;
+    }
+
+    .bl-payment-item {
+        flex-wrap: wrap;
+    }
+
+    .bl-payment-side {
+        text-align: left;
+    }
+
+    .bl-table-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .bl-game-topbar {
+        gap: 8px;
+        padding: 10px 12px;
+    }
+
+    .bl-game-title {
+        max-width: 42vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    .bl-game-frame,
+    .game-container iframe,
+    main iframe {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    footer {
+        padding-inline: 14px;
+    }
+}
+
+@media (max-width: 380px) {
+    .bl-dash-header nav {
+        gap: 6px 9px !important;
+    }
+
+    .bl-dash-header nav a {
+        font-size: 11px !important;
+    }
+
+    .bl-badge-list .bl-achievement {
+        grid-template-columns: 36px minmax(0, 1fr);
+        column-gap: 10px;
+        padding: 13px;
+    }
+
+    .bl-badge-list .bl-achievement .bl-ach-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+
+    .bl-admin-stats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

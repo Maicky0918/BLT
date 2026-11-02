@@ -521,9 +521,14 @@
 
 .bl-badge-list .bl-achievement {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+    grid-template-areas:
+        "icon content rarity"
+        "icon content status";
     align-items: center;
-    gap: 16px;
+    column-gap: 16px;
+    row-gap: 8px;
     min-width: 0;
     padding: 20px;
     overflow: hidden;
@@ -537,7 +542,6 @@
         box-shadow var(--t-med),
         background var(--t-med);
 }
-
 .bl-badge-list .bl-achievement::before {
     content: "";
     position: absolute;
@@ -578,6 +582,7 @@
 
 /* Ícones das conquistas */
 .bl-badge-list .bl-ach-icon {
+    grid-area: icon;
     flex-shrink: 0;
     display: grid;
     place-items: center;
@@ -606,12 +611,14 @@
 }
 
 /* Textos */
-.bl-badge-list .bl-achievement > div[style*="flex:1"] {
-    flex: 1;
+.bl-badge-list .bl-achievement-content {
+    grid-area: content;
     min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .bl-badge-list .bl-achievement strong {
+    overflow-wrap: anywhere;
     display: block;
     margin-bottom: 6px;
     color: var(--text-0);
@@ -620,7 +627,26 @@
     line-height: 1.4;
 }
 
+.bl-badge-list .bl-achievement > .bl-badge {
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+}
+
+.bl-badge-list .bl-achievement > .bl-badge:nth-of-type(1) {
+    grid-area: rarity;
+    justify-self: end;
+}
+
+.bl-badge-list .bl-achievement > .bl-badge:nth-of-type(2) {
+    grid-area: status;
+    justify-self: end;
+}
+
 .bl-badge-list .bl-achievement small {
+    overflow-wrap: anywhere;
+    word-break: normal;
     display: block;
     color: var(--text-2);
     font-size: 13px;
@@ -750,17 +776,24 @@
     }
 
     .bl-badge-list .bl-achievement {
-        flex-wrap: wrap;
-        gap: 12px;
+        grid-template-columns: 42px minmax(0, 1fr);
+        grid-template-areas:
+            "icon content"
+            "icon rarity"
+            "icon status";
+        column-gap: 12px;
+        row-gap: 10px;
         padding: 16px;
     }
 
-    .bl-badge-list .bl-achievement > div[style*="flex:1"] {
-        flex-basis: calc(100% - 60px);
+    .bl-badge-list .bl-achievement .bl-ach-icon {
+        width: 42px;
+        height: 42px;
     }
 
-    .bl-badge-list .bl-achievement > .bl-badge {
-        margin-left: 0;
+    .bl-badge-list .bl-achievement > .bl-badge:nth-of-type(1),
+    .bl-badge-list .bl-achievement > .bl-badge:nth-of-type(2) {
+        justify-self: start;
     }
 }
 
